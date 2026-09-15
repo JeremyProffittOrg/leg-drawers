@@ -308,8 +308,9 @@ def build_pdf(variants, dims):
     story.append(Paragraph(
         "Ten printable variants of one OpenSCAD file. Housing and drawers are separate parts. "
         "Housing always prints with drawer openings up (back of the housing on the bed). "
-        "Drawers always print bottom-down. A C-channel on the left or right takes a table leg "
-        "and zip-ties through windows in the outer wall. Choose a winner from the plates below.",
+        "Drawers always print bottom-down. A U-wrap on the left or right comes out of the side "
+        "with a front wall and a back wall around the table leg, offset 10 mm past the far face, "
+        "and a 4 x 12 mm hole through both walls front-to-back for the zip tie. Choose a winner from the plates below.",
         st["body"],
     ))
     story.append(Spacer(1, 8))
@@ -325,9 +326,9 @@ def build_pdf(variants, dims):
     story.append(Paragraph("How the parts go together", st["h2"]))
     story.append(Paragraph(
         "The housing is a stack of open-front bays with a tray on top. Tray wall heights are "
-        "independent: left, right, back, and a usually-lower front lip. The C-channel is open "
-        "at the front so you can slide it onto a standing table leg, then zip-tie through the "
-        "outer-wall windows. Drawers are separate open-top boxes with a finger slot in the front wall.",
+        "independent: left, right, back, and a usually-lower front lip. The side wrap is a front "
+        "wall and a back wall around the table leg, with a 10 mm tab past the far face. Thread a "
+        "zip tie through the 4 x 12 mm holes front-to-back. Drawers are separate open-top boxes with a finger slot in the front wall.",
         st["body"],
     ))
     v0 = variants[0]["id"]
@@ -422,8 +423,8 @@ def build_pdf(variants, dims):
         g3 = Table(
             [[
                 labeled_fig(png_path(vid, "assembled_front"), "Front elevation", st, w3, h3),
-                labeled_fig(png_path(vid, "assembled_top"), "Top / plan (C-channel)", st, w3, h3),
-                labeled_fig(png_path(vid, "assembled_mount"), "Mount side (zip-tie windows)", st, w3, h3),
+                labeled_fig(png_path(vid, "assembled_top"), "Top / plan (front and back wrap walls)", st, w3, h3),
+                labeled_fig(png_path(vid, "assembled_mount"), "Mount side (4 x 12 mm holes, front to back)", st, w3, h3),
             ]],
             colWidths=[w3 + 0.08 * inch] * 3,
         )
@@ -471,8 +472,8 @@ def build_pdf(variants, dims):
     story.append(Spacer(1, 6))
     story.append(Paragraph(
         "Locked print rules: housing openings face +Z after <font face='Courier'>housing_print</font> "
-        "rotation (back of the housing on the bed, C-channel outer wall is a vertical wall, "
-        "back stop is the first layers). Drawers export with the floor on Z=0. "
+        "rotation (back of the housing on the bed; the wrap back wall is on the bed; "
+        "the wrap front wall is a 10 mm tab past the leg with the zip-tie hole). Drawers export with the floor on Z=0. "
         "If a parameter set exceeds the H2D guard, OpenSCAD <font face='Courier'>assert</font> fails "
         "and no STL is written.",
         st["body"],

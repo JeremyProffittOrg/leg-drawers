@@ -33,3 +33,4 @@
 - 2026-09-15: First ISO showed a table-top slab covering the tray. Removed it. Context is a ghost leg only.
 - 2026-09-15: Front/back U-arms were horizontal plates in the openings-up print (roofs). Replaced with a C-channel: outer wall is a vertical print wall, back stop sits on the bed, front stays open so the unit slides onto a standing leg.
 - 2026-09-15: All 10 variants H2D PASS. Catalog `docs/leg-drawers-variant-catalog.pdf` is 23 pages. Cover, comparison, 10 x 2 plates (ISO + drawings/print poses), Customizer reference. Pages 1-5 and 23 inspected via pdftoppm.
+- 2026-09-15: Operator: wrap must come out of the side with a front and back wall, offset 10 mm, 4 mm wide x 12 mm high hole front-to-back. Replaced the C-channel with a U: front+back walls around the leg, 10 mm tab past the far face, 4 x 12 mm holes through both walls.

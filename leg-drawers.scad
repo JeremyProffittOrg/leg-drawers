@@ -41,10 +41,11 @@ drawer_floor    = 1.6;  // mm, drawer floor
 slide_gap       = 0.45; // mm, per-side clearance in the bay
 back_gap        = 0.8;  // mm, drawer shorter than cavity so it does not hit the back
 leg_clearance   = 0.8;  // mm, per-side pocket clearance around the leg
-mount_arm       = 4.5;  // mm, thickness of the zip-tie arms
+mount_arm       = 4.5;  // mm, thickness of the front and back wrap walls (Y)
+mount_outset    = 10.0; // mm the wrap extends past the far face of the leg
 zip_tie_count   = 0;    // 0 = auto from housing height
-zip_slot_w      = 5.0;  // mm, slot length along housing depth (Y)
-zip_slot_h      = 8.0;  // mm, slot height (Z); 4.8 mm and 7.6 mm ties pass flat
+zip_hole_w      = 4.0;  // mm, hole width (X) in the 10 mm tab
+zip_hole_h      = 12.0; // mm, hole height (Z); hole goes front-to-back through both walls
 show_context    = true; // ghost table leg in assembled / exploded views
 show_table      = false; // thin table-top slab above the ledges (mounted-under-desk view)
 
@@ -62,8 +63,11 @@ body_h = drawer_count * cav_h + (drawer_count + 1) * wall;
 
 inner_x = leg_x + 2 * leg_clearance;
 inner_y = leg_y + 2 * leg_clearance;
-mount_x_span = inner_x + mount_arm;
+mount_x_span = inner_x + mount_outset;
 mount_y_span = body_d;
+// Wrap sits at the back of the housing so the back wall prints on the bed.
+y_back_wall  = body_d - mount_arm;
+y_front_wall = y_back_wall - inner_y - mount_arm;
 
 ledge_max = max(max(ledge_left, ledge_right), max(ledge_back, ledge_front));
 
@@ -161,31 +165,34 @@ module ledges() {
             cube([body_w, wall, ledge_front + eps]);
 }
 
-module mount_left() {
-    // C-channel on the left of the housing, open at the front:
-    //   - outer wall (thin in X) spans the full housing depth and height
-    //     so it prints as a vertical wall from the bed to the top
-    //   - back stop (thin in Y) sits on the bed after the openings-up rotation
-    // Slide the channel onto a standing table leg from the front, then
-    // zip-tie through the outer-wall windows around the leg.
-    ox = -mount_x_span;
-    leg_y_min = body_d - mount_arm - inner_y;
-    difference() {
-        translate([ox, 0, 0])
-            cube([mount_arm, body_d, body_h]);
-        n = auto_zips;
-        slot_y = leg_y_min + inner_y / 2 - zip_slot_w / 2;
-        for (i = [0 : n - 1]) {
-            translate([ox - eps, slot_y, zip_z(i, n) - zip_slot_h / 2])
-                cube([mount_arm + 2 * eps, zip_slot_w, zip_slot_h]);
-        }
-        // lead-in on the front inner corner of the outer wall
-        translate([ox + mount_arm, 0, -eps])
-            linear_extrude(height = body_h + 2 * eps)
-                polygon([[eps, -eps], [-2.0, -eps], [eps, 2.0]]);
+module zip_holes_in_wall(y_wall) {
+    // 4 mm wide x 12 mm high, through the wall front-to-back (Y).
+    // Centered in the 10 mm tab past the far face of the table leg.
+    n = auto_zips;
+    x0 = -inner_x - mount_outset / 2 - zip_hole_w / 2;
+    for (i = [0 : n - 1]) {
+        translate([x0, y_wall - eps, zip_z(i, n) - zip_hole_h / 2])
+            cube([zip_hole_w, mount_arm + 2 * eps, zip_hole_h]);
     }
-    translate([ox, body_d - mount_arm, 0])
-        cube([mount_x_span, mount_arm, body_h]);
+}
+
+module mount_left() {
+    // U-wrap on the side of the housing: front wall + back wall around
+    // the table leg, plus a 10 mm tab past the far face. A 4 x 12 mm
+    // hole through both walls (front to back) takes the zip tie.
+    ox = -mount_x_span;
+    yf = y_front_wall;
+    yb = y_back_wall;
+    difference() {
+        union() {
+            translate([ox, yf, 0])
+                cube([mount_x_span, mount_arm, body_h]);
+            translate([ox, yb, 0])
+                cube([mount_x_span, mount_arm, body_h]);
+        }
+        zip_holes_in_wall(yf);
+        zip_holes_in_wall(yb);
+    }
 }
 
 module mount() {
@@ -329,6 +336,9 @@ module emit_dims() {
         "\"dh\":", dh, ",",
         "\"dd\":", dd, ",",
         "\"auto_zips\":", auto_zips, ",",
+        "\"mount_outset\":", mount_outset, ",",
+        "\"zip_hole_w\":", zip_hole_w, ",",
+        "\"zip_hole_h\":", zip_hole_h, ",",
         "\"ledge_max\":", ledge_max,
     "}"));
     cube(0.01);
