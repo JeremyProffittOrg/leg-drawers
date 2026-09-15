@@ -26,7 +26,7 @@
 - [x] scad-model — `leg-drawers.scad` compiles and exports housing_print + drawer_print STL
 - [x] ten-variants — `variants.json` has 10 named sets; each H2D PASS
 - [x] render-catalog — 10 cameras per variant + catalog PDF (23 pages, 4491516 bytes)
-- [~] pdf-email — PDF pages inspected; SES MessageId pending
+- [x] pdf-email — SES MessageId 010001a0a40aed4f-8d63fed5-8b08-42c5-822c-23db06b50831-000000
 
 ## Execution log
 
