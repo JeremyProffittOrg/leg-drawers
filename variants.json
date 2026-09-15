@@ -1,0 +1,189 @@
+{
+  "h2d": {
+    "single_nozzle_mm": [325, 320, 325],
+    "guard_mm": [320, 315, 320],
+    "note": "Guard is a 5 mm margin under Bambu Lab H2D single-nozzle volume. Housing prints openings-up; drawers print bottom-down."
+  },
+  "variants": [
+    {
+      "id": "office-slim-left",
+      "title": "Office slim, left mount",
+      "intent": "Everyday desk: three shallow drawers on a 50 mm square leg, mount on the left.",
+      "params": {
+        "drawer_count": 3,
+        "drawer_height": 32,
+        "drawer_width": 100,
+        "drawer_depth": 120,
+        "leg_x": 50,
+        "leg_y": 50,
+        "leg_on_left": true,
+        "ledge_left": 10,
+        "ledge_right": 10,
+        "ledge_back": 10,
+        "ledge_front": 3
+      }
+    },
+    {
+      "id": "office-slim-right",
+      "title": "Office slim, right mount",
+      "intent": "Mirror of office-slim-left for the right-hand table leg.",
+      "params": {
+        "drawer_count": 3,
+        "drawer_height": 32,
+        "drawer_width": 100,
+        "drawer_depth": 120,
+        "leg_x": 50,
+        "leg_y": 50,
+        "leg_on_left": false,
+        "ledge_left": 10,
+        "ledge_right": 10,
+        "ledge_back": 10,
+        "ledge_front": 3
+      }
+    },
+    {
+      "id": "pencil-four",
+      "title": "Pencil four-stack",
+      "intent": "Four low bays for pens, bits, and SD cards. 50 mm square leg, left mount.",
+      "params": {
+        "drawer_count": 4,
+        "drawer_height": 20,
+        "drawer_width": 85,
+        "drawer_depth": 130,
+        "leg_x": 50,
+        "leg_y": 50,
+        "leg_on_left": true,
+        "ledge_left": 8,
+        "ledge_right": 8,
+        "ledge_back": 8,
+        "ledge_front": 2
+      }
+    },
+    {
+      "id": "tool-two-deep",
+      "title": "Tool two-deep",
+      "intent": "Two tall bays for hand tools. 75 mm square leg, left mount, taller tray walls.",
+      "params": {
+        "drawer_count": 2,
+        "drawer_height": 55,
+        "drawer_width": 130,
+        "drawer_depth": 170,
+        "leg_x": 75,
+        "leg_y": 75,
+        "leg_on_left": true,
+        "ledge_left": 14,
+        "ledge_right": 14,
+        "ledge_back": 14,
+        "ledge_front": 5
+      }
+    },
+    {
+      "id": "ikea-adils",
+      "title": "IKEA ADILS-size pocket",
+      "intent": "40 mm square pocket (covers ~38 mm ADILS-class round legs with clearance), three mid bays.",
+      "params": {
+        "drawer_count": 3,
+        "drawer_height": 36,
+        "drawer_width": 110,
+        "drawer_depth": 125,
+        "leg_x": 40,
+        "leg_y": 40,
+        "leg_on_left": true,
+        "ledge_left": 10,
+        "ledge_right": 10,
+        "ledge_back": 10,
+        "ledge_front": 3
+      }
+    },
+    {
+      "id": "rect-rail-leg",
+      "title": "Rectangular rail leg",
+      "intent": "40 x 80 mm rectangular desk rail. Tall back ledge to sit against the apron.",
+      "params": {
+        "drawer_count": 3,
+        "drawer_height": 38,
+        "drawer_width": 140,
+        "drawer_depth": 120,
+        "leg_x": 40,
+        "leg_y": 80,
+        "leg_on_left": true,
+        "ledge_left": 12,
+        "ledge_right": 12,
+        "ledge_back": 18,
+        "ledge_front": 3
+      }
+    },
+    {
+      "id": "tray-top",
+      "title": "Deep tray top",
+      "intent": "Three mid bays plus a deep top tray (28 mm side/back walls, 8 mm front lip).",
+      "params": {
+        "drawer_count": 3,
+        "drawer_height": 40,
+        "drawer_width": 120,
+        "drawer_depth": 140,
+        "leg_x": 50,
+        "leg_y": 50,
+        "leg_on_left": true,
+        "ledge_left": 28,
+        "ledge_right": 28,
+        "ledge_back": 28,
+        "ledge_front": 8
+      }
+    },
+    {
+      "id": "mini-right",
+      "title": "Mini right",
+      "intent": "Small two-bay set for a 35 mm leg on the right. Short print, low mass.",
+      "params": {
+        "drawer_count": 2,
+        "drawer_height": 28,
+        "drawer_width": 75,
+        "drawer_depth": 85,
+        "leg_x": 35,
+        "leg_y": 35,
+        "leg_on_left": false,
+        "ledge_left": 6,
+        "ledge_right": 6,
+        "ledge_back": 6,
+        "ledge_front": 2
+      }
+    },
+    {
+      "id": "wide-three",
+      "title": "Wide three-bay",
+      "intent": "Wide parts bins on a 70 mm square leg. Sized to stay inside the H2D guard.",
+      "params": {
+        "drawer_count": 3,
+        "drawer_height": 42,
+        "drawer_width": 180,
+        "drawer_depth": 160,
+        "leg_x": 70,
+        "leg_y": 70,
+        "leg_on_left": true,
+        "ledge_left": 12,
+        "ledge_right": 12,
+        "ledge_back": 12,
+        "ledge_front": 4
+      }
+    },
+    {
+      "id": "asymmetric-wall",
+      "title": "Asymmetric wall",
+      "intent": "Right-hand mount, tall left and back ledges for a unit that sits against a wall.",
+      "params": {
+        "drawer_count": 3,
+        "drawer_height": 36,
+        "drawer_width": 115,
+        "drawer_depth": 125,
+        "leg_x": 60,
+        "leg_y": 40,
+        "leg_on_left": false,
+        "ledge_left": 22,
+        "ledge_right": 6,
+        "ledge_back": 22,
+        "ledge_front": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+renders/*.png
+renders/*.jpg
+renders/*.stl
+renders/_dims.stl
+renders/pdf-check/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
